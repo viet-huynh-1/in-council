@@ -274,7 +274,7 @@ main:focus{outline:none}
 .datebox select{border:0;background:none;font-family:var(--f-label);font-size:12px;color:var(--muted);cursor:pointer;padding:2px 2px}
 .chg{font-family:var(--f-label);font-size:11px;color:var(--muted);letter-spacing:.06em;white-space:nowrap}
 .playbox{display:flex;gap:6px;align-items:center}
-.sel.mini{font-size:12px;padding:2px 22px 2px 8px}
+.sel.mini{font-size:12px;padding:2px 22px 2px 8px;width:auto;height:auto;display:inline-block;margin:0}
 #play[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
 .seg{display:inline-flex;border:1.5px solid var(--line);border-radius:3px;overflow:hidden}
 .seg button{background:none;border:0;border-right:1px solid var(--line);padding:5px 11px;font-family:var(--f-label);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);cursor:pointer}
@@ -415,11 +415,13 @@ svg.chamber{width:100%;height:auto;display:block;overflow:visible}
 h3 .cnt{font-size:13px;margin-left:6px}
 
 /* about */
-.folders{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;margin-top:30px}
+.folders{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:18px;margin-top:30px}
 .folder{position:relative;display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--ink);background:var(--manila);border:1.5px solid var(--line);border-radius:0 3px 3px 3px;padding:16px 18px;margin-top:22px;font-size:15.5px}
 .folder .tab{position:absolute;top:-22px;left:-1.5px;background:var(--manila);border:1.5px solid var(--line);border-bottom:0;border-radius:4px 4px 0 0;padding:1px 12px;font-family:var(--f-label);font-size:11px;letter-spacing:.14em;color:var(--muted)}
 .folder .note{font-family:var(--f-label);font-size:12px;color:var(--accent)}
 .folder:hover{border-color:var(--ink)}
+.folder{min-width:0;overflow-wrap:anywhere}
+.folder b{overflow-wrap:anywhere}
 .ch{margin-top:40px !important}
 .ch .zh{font-size:18px;color:var(--muted)}
 .changelog{list-style:none;display:grid;gap:10px;max-width:80ch}
@@ -657,6 +659,9 @@ svg.vseal{width:34px;height:60px;overflow:visible;grid-row:span 2;align-self:sta
 .sheet .bs-day{display:inline !important}
 .sheet .bs-night{display:none !important}
 .sheet .bs-g,.sheet .bs-t{fill:#FBF6EC !important;stroke:none !important}
+
+.byline{font-family:var(--f-label);font-size:13px;letter-spacing:.08em;color:var(--muted);margin:-4px 0 18px}
+.byline a{color:var(--accent)}
 
 </style>
 </head>
@@ -1333,6 +1338,7 @@ function renderHome(){
       <div class="label kicker"><span class="zh">香港 · 立法局 · 行政局</span> &nbsp;Hong Kong, 1960–1997</div>
       <h1>In Council</h1>
       <p class="lede">Who sat on Hong Kong's Legislative and Executive Councils, and who held the colony's senior posts, on any day from 1 January 1960 to 30 June 1997.</p>
+      <p class="byline">A project by <a href="https://viet-huynh.com">Viet Huynh</a></p>
       <form class="opener" id="opener" aria-label="Open the councils on a date">
         <label class="label" for="op-date">Open the councils on</label>
         <div class="oprow"><input id="op-date" type="date" min="${MIN}" max="${MAX}" value="1975-01-01" required>
