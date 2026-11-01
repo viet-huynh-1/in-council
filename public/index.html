@@ -592,6 +592,36 @@ svg.net .pn.lit .pl,svg.net .pn:hover .pl{opacity:1}
   .top{gap:14px}
 }
 
+/* ---- desktop: centre the pages and use the width ---- */
+.page{margin-left:auto;margin-right:auto}
+.page.wide{max-width:1400px}
+.split{grid-template-columns:minmax(0,1fr) minmax(300px,380px);gap:56px}
+.lede{max-width:none}
+.home .lede{max-width:44ch}
+.home .hero{grid-template-columns:minmax(0,1fr) minmax(300px,420px)}
+.home .cameo .ibid{max-width:400px}
+.cameo .ibid{max-width:360px}
+.playcard{max-width:none}
+.glance{align-self:center}
+.glance dl{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;align-items:baseline}
+.glance dt{font-family:var(--f-display);font-size:30px;line-height:1;text-align:right}
+.glance dd{font-size:15px;color:var(--muted)}
+.glance dd:first-letter{text-transform:uppercase}
+.steps{display:grid !important;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:18px 24px !important;max-width:none !important;margin:18px 0 26px !important}
+.steps li{background:var(--surface);border:1.5px solid var(--line);border-radius:3px;padding:16px 18px 16px 62px;font-size:16px}
+.steps li:before{left:16px;top:16px}
+#howview > p{max-width:none}
+.tables{grid-template-columns:repeat(auto-fit,minmax(460px,1fr));align-items:start}
+.ptop{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:40px;align-items:center;border-bottom:1.5px dashed var(--line);padding-bottom:18px;margin-bottom:6px}
+.ptop .career{margin:0}
+.pgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start}
+.person h3.first{margin-top:18px}
+.changelog{max-width:none !important}
+.gaps{grid-template-columns:repeat(auto-fit,minmax(380px,1fr))}
+@media (max-width:1000px){ .ptop,.pgrid{grid-template-columns:1fr;gap:16px} .tables{grid-template-columns:1fr} }
+@media (max-width:640px){ .steps{grid-template-columns:1fr} }
+a[href^="mailto"]{white-space:nowrap}
+
 </style>
 </head>
 <body>
@@ -662,12 +692,12 @@ svg.net .pn.lit .pl,svg.net .pn:hover .pl{opacity:1}
 
 <section class="page wide" id="timelineview" hidden></section>
 <section class="page wide" id="peopleview" hidden></section>
-<section class="page" id="personview" hidden></section>
+<section class="page wide" id="personview" hidden></section>
 <section class="page wide" id="connectionsview" hidden></section>
-<section class="page" id="howview" hidden></section>
+<section class="page wide" id="howview" hidden></section>
 <section class="page wide" id="limitsview" hidden></section>
 <section class="page wide" id="aboutview" hidden></section>
-<section class="page" id="dataview" hidden></section>
+<section class="page wide" id="dataview" hidden></section>
 <section class="page wide" id="posterview" hidden></section>
 </main>
 
@@ -1139,15 +1169,16 @@ function profileHTML(pid, mode){
   const links = mode==='page'
     ? `<p class="plinks"><a href="#people">← All people</a> · <button class="linkish" data-copy="${pid}">Copy link to this page</button></p>`
     : `<p class="plinks"><a href="#person/${pid}" data-close>Open as a page</a> (permanent link)</p>`;
-  return `${head}${links}
-    ${p.st?`<p class="styled">As styled on 1 January 1970: ${esc(p.st)}</p>`:''}
-    ${mode==='page'?careerSVG(pid):''}
-    <dl class="facts">${facts.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join('')}<dt>Background</dt><dd>${bgHtml}</dd><dt>Companies and bodies</dt><dd>${affHtml}</dd></dl>
+  const factsHtml=`<dl class="facts">${facts.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join('')}<dt>Background</dt><dd>${bgHtml}</dd><dt>Companies and bodies</dt><dd>${affHtml}</dd></dl>
     ${notes.length?`<h3>Where the sources differ</h3><div class="notes">${notes.map(n=>`<p>${esc(n)}</p>`).join('')}</div>`:''}
-    ${p.pn?`<h3>Note</h3><p class="pnote">${esc(p.pn)}</p>`:''}
-    ${roleHtml}
-    ${p.db?`<p style="margin-top:14px;font-size:14.5px"><a href="https://app.legco.gov.hk/member_front/english/library/member_detail.aspx?id=${p.db}">Full LegCo database profile</a></p>`:''}
-    <h3>Sources</h3><ol class="srcs">${refs.map((i,k)=>{const s=D.sources[i]; if(!s) return ''; return `<li><span class="k">${k+1}</span><span>${s.link?`<a href="${esc(s.link)}">${esc(s.citation)}</a>`:esc(s.citation)}${s.page_or_record?` <span class="muted">${esc(s.page_or_record)}</span>`:''}</span></li>`}).join('')}</ol>`;
+    ${p.pn?`<h3>Note</h3><p class="pnote">${esc(p.pn)}</p>`:''}`;
+  const rolesHtml=`${roleHtml}
+    ${p.db?`<p style="margin-top:14px;font-size:14.5px"><a href="https://app.legco.gov.hk/member_front/english/library/member_detail.aspx?id=${p.db}">Full LegCo database profile</a></p>`:''}`;
+  const srcHtml=`<h3>Sources</h3><ol class="srcs">${refs.map((i,k)=>{const s=D.sources[i]; if(!s) return ''; return `<li><span class="k">${k+1}</span><span>${s.link?`<a href="${esc(s.link)}">${esc(s.citation)}</a>`:esc(s.citation)}${s.page_or_record?` <span class="muted">${esc(s.page_or_record)}</span>`:''}</span></li>`}).join('')}</ol>`;
+  const styled=p.st?`<p class="styled">As styled on 1 January 1970: ${esc(p.st)}</p>`:'';
+  if(mode==='page') return `<div class="ptop"><div>${head}${links}${styled}</div>${careerSVG(pid)}</div>
+    <div class="pgrid"><div class="pcol"><h3 class="first">About</h3>${factsHtml}</div><div class="pcol">${rolesHtml.replace('<h3>','<h3 class="first">')}${srcHtml}</div></div>`;
+  return `${head}${links}${styled}${factsHtml}${rolesHtml}${srcHtml}`;
 }
 function careerSVG(pid){
   const ts=TBYPID[pid]||[]; const bodies=['LC','EC','SO','PLC'].filter(b=>ts.some(t=>t.body===b));
@@ -1277,8 +1308,9 @@ function renderHome(){
   <p class="hfoot">Every fact links to its source. Some records are incomplete: <a href="#limits">see what's missing</a> before relying on a detail.</p>`;
 }
 function renderHow(){
-  $('#howview').innerHTML=`<h1>How it works</h1>
-  <p>Every seat on this site comes from published records, and every fact on a card links to the record it came from. This is the process, from the archive to the page.</p>
+  $('#howview').innerHTML=`<div class="split"><div><div class="label kicker"><span class="zh">方法</span> &nbsp;How it works</div><h1>From the archive to the page</h1>
+  <p class="lede">Every seat on this site comes from published records, and every fact on a card links to the record it came from. This is the process, step by step.</p></div>
+  <div class="box glance"><h4>Behind the site</h4><dl><dt>37</dt><dd>Year Book lists of both councils, 1 January 1960 to 2 January 1997</dd><dt>${fmtN(PIDS.filter(p=>P[p].db).length)}</dt><dd>member profiles from the LegCo database</dd><dt>${fmtN(STATS.terms)}</dt><dd>periods of service, each with its source</dd><dt>${fmtN(STATS.affs)}</dt><dd>ties to ${fmtN(STATS.orgs)} companies and institutions</dd></dl><p class="small"><a href="#limits">What's still missing →</a></p></div></div>
   <ol class="steps">
     <li><b>Find the records.</b> Two kinds of record do most of the work. The government's annual reports (the Year Books) print everyone on the Executive and Legislative Councils at the start of each year; until 1972 they also note every change during the year, with dates. The Legislative Council's own members database gives every member's periods of service, to the day.</li>
     <li><b>Read them seat by seat.</b> Each period of service becomes a row: who, which council, which seat or post, the first and last day, and whether they held the place in their own right or stood in for someone (acting, provisional or temporary).</li>
@@ -1375,10 +1407,11 @@ const TABLES={
 };
 function download(name){ const tb=TABLES[name]; const blob=new Blob([toCSV(tb.cols.map(c=>c[0]),tb.rows())],{type:'text/csv;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=tb.file; document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },500); }
 function renderData(){
-  $('#dataview').innerHTML=`<div class="label kicker"><span class="zh">數據</span> &nbsp;Dataset</div><h1>The data</h1>
+  $('#dataview').innerHTML=`<div class="split"><div><div class="label kicker"><span class="zh">數據</span> &nbsp;Dataset</div><h1>The data</h1>
   <p class="lede">Everything behind the site, as spreadsheet-ready CSV files (UTF-8, one header row). Free to reuse, change and share, with credit, under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a> licence.</p>
   <p><b>Please credit:</b> Viet Huynh, <i>In Council: Hong Kong, 1960–1997</i>, dataset as of ${fd(D.built)}, council.viet-huynh.com, CC BY 4.0.</p>
-  <p>Before using it, read <a href="#limits">what's missing</a>. Dates are given as ranges where the exact day is not known: a row is certain on the days from <code>start_latest</code> to <code>end_earliest</code>, and possible from <code>start_earliest</code> to <code>end_latest</code>.</p>
+  <p>Before using it, read <a href="#limits">what's missing</a>. Dates are given as ranges where the exact day is not known: a row is certain on the days from <code>start_latest</code> to <code>end_earliest</code>, and possible from <code>start_earliest</code> to <code>end_latest</code>.</p></div>
+  <div class="box glance"><h4>In the download</h4><dl>${Object.entries(TABLES).map(([k,tb])=>`<dt>${fmtN(tb.rows().length)}</dt><dd>${k.replace('_',' ')}</dd>`).join('')}</dl><p class="small">CC BY 4.0 · UTF-8 CSV</p></div></div>
   <div class="tables">${Object.entries(TABLES).map(([k,tb])=>`<div class="tbl"><div class="tbh"><h2>${k.replace('_',' ')}</h2><span class="label">${fmtN(tb.rows().length)} rows</span><button class="go" data-dl="${k}">Download CSV</button></div><p>${esc(tb.desc)}</p>
     <details><summary>Columns</summary><table class="dict"><tbody>${tb.cols.map(([c,d])=>`<tr><th><code>${c}</code></th><td>${esc(d)}</td></tr>`).join('')}</tbody></table></details></div>`).join('')}</div>`;
 }
