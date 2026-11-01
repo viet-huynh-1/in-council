@@ -338,7 +338,7 @@ svg.chamber{width:100%;height:auto;display:block;overflow:visible}
 .cameo .ibid{width:100%;max-width:320px;height:auto;display:block;margin:0 auto}
 .cameo .note{font-family:var(--f-display);font-style:italic;font-size:15px;color:var(--muted);margin-top:4px;line-height:1.45}
 .stamp{display:inline-block;margin-top:14px;font-family:var(--f-label);font-size:12px;letter-spacing:.18em;color:var(--accent);border:2px solid var(--accent);border-radius:3px;padding:4px 10px;transform:rotate(-4deg);opacity:.85}
-/* Ibid. drawing */
+/* Ibid drawing */
 .ibid .fx{filter:var(--dk-filter)}
 .ibid path,.ibid circle,.ibid rect{stroke-linecap:round;stroke-linejoin:round}
 .ibid .dk{fill:var(--dk-fill);stroke:var(--dk-ink);stroke-width:2.8}
@@ -1214,7 +1214,7 @@ function placeTip(x,y){ const r=tip.getBoundingClientRect(); let L=x+14,Tp=y+14;
   if(L+r.width>innerWidth-8) L=x-r.width-14; if(Tp+r.height>innerHeight-8) Tp=y-r.height-14;
   tip.style.left=Math.max(8,L)+'px'; tip.style.top=Math.max(8,Tp)+'px'; }
 
-// ===================== Ibid., the duck from viet-huynh.com, in costume =====================
+// ===================== Ibid, the duck from viet-huynh.com, in costume =====================
 // Drawn from the site's own duck paths. Colours come from CSS variables, so day and night both work.
 function duck(o={}){
   let s='';
@@ -1229,22 +1229,21 @@ function duck(o={}){
 }
 const IBID={
   // About: a civil servant, with bowler, umbrella and the red dispatch box
-  about:{vb:'-90 -62 220 120', label:'Ibid. the duck in a bowler hat, with an umbrella and a red dispatch box', svg:()=>
+  about:{vb:'-90 -62 220 120', label:'Ibid the duck in a bowler hat, with an umbrella and a red dispatch box', svg:()=>
     `<path class="p-line" d="M46,30 L46,-28"/><path class="p-green" d="M14,-24 C20,-48 72,-48 78,-24 C72,-30 66,-30 61,-24 C56,-30 51,-30 46,-24 C41,-30 36,-30 31,-24 C26,-30 20,-30 14,-24 Z"/><path class="p-line" d="M46,30 C46,37 39,37 39,32"/>`+
     duck()+
     `<path class="p-dark" d="M6,-19 C5,-33 29,-33 28,-19 Z"/><path class="p-line" d="M0,-18 C8,-16 26,-16 34,-18"/>`+
     `<g transform="translate(-58,8) rotate(-6)"><rect class="p-red" x="0" y="0" width="46" height="30" rx="3"/><rect class="p-line" x="17" y="-6" width="12" height="7" rx="2"/><rect class="p-gold" x="18" y="12" width="10" height="7"/></g>`},
   // Home: a tour guide, with cap, pennant and lanyard
-  home:{vb:'-40 -98 178 160', label:'Ibid. the duck as a tour guide, in a cap, holding up a pennant, with a lanyard badge', svg:()=>
+  home:{vb:'-40 -98 178 160', label:'Ibid the duck as a tour guide, in a cap, holding up a pennant, with a lanyard badge', svg:()=>
     `<path class="p-line thick" d="M66,-12 L75,-84"/><path class="p-red" d="M74,-83 L118,-73 L72,-62 Z"/><text x="88" y="-69" class="p-flagtext">議</text>`+
     duck({wingUp:true})+
     `<path class="p-red" d="M4,-18 C3,-33 31,-33 30,-18 Z"/><path class="p-red" d="M7,-19 C-1,-20 -11,-17 -14,-13 C-6,-13 1,-15 7,-16 Z"/><circle class="p-paper" cx="17" cy="-31" r="2"/>`+
     `<path class="p-cord" d="M8,1 L18,16 L28,1"/><rect class="p-paper" x="12.5" y="15" width="12" height="15" rx="1.5"/><path class="p-line fine" d="M15,21 L22,21 M15,25 L20,25"/>`},
   // Limitations: an archivist, with eyeshade, magnifier and an archive box marked "?"
-  limits:{vb:'-48 -66 200 128', label:'Ibid. the duck as an archivist, in a green eyeshade, with a magnifying glass and an open archive box with a question mark on it', svg:()=>
+  limits:{vb:'-48 -66 200 128', label:'Ibid the duck as an archivist, with a magnifying glass and an open archive box with a question mark on it', svg:()=>
     `<g transform="translate(72,4)"><rect class="p-manila" x="0" y="10" width="70" height="42"/><path class="p-manila" d="M-6,-8 L66,-14 L68,-4 L-4,2 Z"/><rect class="p-paper" x="20" y="22" width="30" height="14"/><text x="35" y="33.5" class="p-boxtext">?</text></g>`+
     duck({eye:'up'})+
-    `<path class="p-line" d="M3,-14 C9,-19 26,-19 31,-13"/><path class="p-visor" d="M6,-17 C-1,-16 -9,-12 -13,-7 C-5,-6 1,-9 7,-12 Z"/>`+
     `<circle class="p-lens" cx="-24" cy="-4" r="11"/><path class="p-line thick" d="M-16,4 L-6,14"/>`+
     `<text x="46" y="-30" class="p-q">?</text>`}
 };
@@ -1286,7 +1285,7 @@ function renderHome(){
       </form>
       <p class="quick"><span class="label">Or start at</span> ${quick.map(([d,l,w])=>`<a href="#legco/${d}">${l}<span>${w}</span></a>`).join('')}</p>
     </div>
-    ${cameo('home','Ibid., your guide for today. The tour starts on 1 January 1960; please keep to the path and mind the dashed lines.','GUIDED TOURS · 導賞')}
+    ${cameo('home','Ibid, your guide for today. The tour starts on 1 January 1960; please keep to the path and mind the dashed lines.','GUIDED TOURS · 導賞')}
   </div>
   <section class="hsec"><h2>What you can use it for</h2>
   <div class="uses">
@@ -1331,7 +1330,7 @@ function renderLimits(){
   <h1>What's missing</h1>
   <p class="lede">This tool is only as complete as the records behind it. These are the known gaps and soft spots, so you can judge how far to trust a detail. They will be filled in over time.</p>
   <p>If you can help with any of them, or spot something wrong, write to <a href="mailto:hello@viet-huynh.com">hello@viet-huynh.com</a>.</p>
-  </div>${cameo('limits','Ibid., in the stacks. Some of the boxes turned out to be empty.','INCOMPLETE · 未完')}</div>
+  </div>${cameo('limits','Ibid, in the stacks. Some of the boxes turned out to be empty.','INCOMPLETE · 未完')}</div>
   <div class="gaps">
   <section><h2>Dates</h2><ul>
     ${li('Executive Council dates after 1972 are known only to within a year.','The printed lists give who sat on 1 or 2 January each year, but not the day anyone joined or left in between. '+fmtN(S2.ecUnc)+' ExCo periods of service have an uncertain start or end.')}
@@ -1381,7 +1380,7 @@ function renderAbout(){
       <a class="folder" href="mailto:hello@viet-huynh.com"><span class="tab">CORRECTIONS</span><span>Spotted an error? Email <b>hello@viet-huynh.com</b>.</span><span class="note">Fixes are logged below.</span></a>
       <a class="folder" href="#how"><span class="tab">HOW IT WORKS</span><span>From archive record to the seat on screen, step by step.</span><span class="note">Read the method →</span></a>
     </div>
-  </div>${cameo('about','Ibid., on secondment from viet-huynh.com, ready for the 9:30 sitting.','ON LOAN · 借調')}</div>
+  </div>${cameo('about','Ibid, on secondment from viet-huynh.com, ready for the 9:30 sitting.','ON LOAN · 借調')}</div>
   <h2 class="ch">Changelog <span class="zh">更正記錄</span></h2>
   <ol class="changelog">${CHANGELOG.map(([d,t])=>`<li><span class="label">${fd(d)}</span><span>${esc(t)}</span></li>`).join('')}</ol>
   <p class="muted small">Corrections are added here with the date and what changed.</p>`;
