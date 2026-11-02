@@ -623,6 +623,7 @@ svg.net .pn.lit .pl,svg.net .pn:hover .pl{opacity:1}
 @media (max-width:1000px){ .ptop,.pgrid{grid-template-columns:1fr;gap:16px} .tables{grid-template-columns:1fr} }
 @media (max-width:640px){ .steps{grid-template-columns:1fr} }
 a[href^="mailto"]{white-space:nowrap}
+.folder[href^="mailto"]{white-space:normal}
 
 /* ---- seals: identical to viet-huynh.com (same stone, colours, corners, glyph size, night outline and glow) ---- */
 .bseal{display:block;height:56px;width:auto;aspect-ratio:62/110;overflow:visible}
@@ -662,6 +663,8 @@ svg.vseal{width:34px;height:60px;overflow:visible;grid-row:span 2;align-self:sta
 
 .byline{font-family:var(--f-label);font-size:13px;letter-spacing:.08em;color:var(--muted);margin:-4px 0 18px}
 .byline a{color:var(--accent)}
+
+@media (max-width:900px){.split{grid-template-columns:minmax(0,1fr);gap:28px}}
 
 </style>
 </head>
