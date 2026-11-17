@@ -1,5 +1,6 @@
 # Publishes the site to GitHub Pages every time a change reaches the main branch.
-# For now the site is the plain files in public/. When the Astro build arrives, a build step goes here.
+# The files in public/ are made on your PC by "node build.js". Before publishing, GitHub rebuilds them
+# from data/council-data.json and stops (a red run, nothing published) if they don't match.
 name: Deploy to GitHub Pages
 
 on:
@@ -25,6 +26,12 @@ jobs:
     steps:
       - name: Get the files
         uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check the built pages match the data
+        run: node build.js --verify
       - name: Set up GitHub Pages
         uses: actions/configure-pages@v5
       - name: Package the site

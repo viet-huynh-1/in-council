@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>In Council: Hong Kong, 1960–1997</title>
+<meta name="description" content="Who sat on Hong Kong's Legislative and Executive Councils, and who held the colony's senior posts, on any day from 1 January 1960 to 30 June 1997.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@0;1&family=Courier+Prime:wght@400;700&family=Noto+Serif+TC:wght@500;700;900&display=swap">
+<style>
+__CSS__
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<filter id="ib-brush" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.8"/></filter>
+<filter id="ib-glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="sealglow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs></svg>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="brand">
+    <a class="sealink" href="https://viet-huynh.com" title="viet-huynh.com" aria-label="Viet Huynh's website, viet-huynh.com">__SEAL__</a>
+    <a class="titlelink" href="#home" title="In Council home"><span class="name">In Council</span><span class="bsub">HONG KONG · 1960–1997 · <span class="zh">立法局 · 行政局</span></span></a>
+  </div>
+  <nav class="route" aria-label="Sections">
+    <a class="stop" data-go="seats" href="#legco/1970-01-01"><span class="z">議席</span><span class="dot"></span><span class="e">Seats</span></a>
+    <a class="stop" data-go="timeline" href="#timeline"><span class="z">年表</span><span class="dot"></span><span class="e">Timeline</span></a>
+    <a class="stop" data-go="people" href="#people"><span class="z">人物</span><span class="dot"></span><span class="e">People</span></a>
+    <a class="stop" data-go="connections" href="#connections"><span class="z">關係</span><span class="dot"></span><span class="e">Connections</span></a>
+    <a class="stop" data-go="how" href="#how"><span class="z">方法</span><span class="dot"></span><span class="e">How it works</span></a>
+    <a class="stop" data-go="limits" href="#limits"><span class="z">缺漏</span><span class="dot"></span><span class="e">Limitations</span></a>
+    <a class="stop" data-go="about" href="#about"><span class="z">關於</span><span class="dot"></span><span class="e">About</span></a>
+  </nav>
+  <div class="theme" role="group" aria-label="Day or night"><button id="th-day" aria-pressed="false" title="Day">日</button><button id="th-night" aria-pressed="false" title="Night">夜</button></div>
+</header>
+
+<main id="main" tabindex="-1">
+<section class="page wide home" id="homeview" hidden></section>
+
+<div id="seatsview" hidden>
+<div class="bar">
+  <div class="datebox"><button id="prev">◀</button><input id="date" type="date" min="1960-01-01" max="1997-06-30" aria-label="Date"><button id="next">▶</button>
+    <select id="unit" aria-label="Arrows step by"><option value="change">by change</option><option value="day">by day</option><option value="month">by month</option><option value="year">by year</option></select></div>
+  <div class="playbox"><button id="play" class="chip" aria-pressed="false">▶ Play</button><select id="speed" class="sel mini" aria-label="Play speed"><option value="0.5">½ year/s</option><option value="1" selected>1 year/s</option><option value="2">2 years/s</option><option value="4">4 years/s</option></select></div>
+  <span class="chg" id="chg" aria-live="polite"></span>
+  <div class="search combo"><span aria-hidden="true">⌕</span><input id="q" type="search" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="sugg" aria-label="Search people, posts and companies" placeholder="Search people, posts, companies" autocomplete="off"><span class="n" id="qn"></span><ul id="sugg" role="listbox" aria-label="Suggestions" hidden></ul></div>
+</div>
+<div class="bar bar2">
+  <div class="tabs" role="tablist" aria-label="Body">
+    <button role="tab" data-body="legco"><span class="zh">立法局</span>LegCo</button>
+    <button role="tab" data-body="exco"><span class="zh">行政局</span>ExCo</button>
+    <button role="tab" data-body="senior">Senior Officials</button>
+    <button role="tab" data-body="all">All three</button>
+    <button role="tab" data-body="plc" id="plctab"><span class="zh">臨時立法會</span>Provisional LegCo</button>
+  </div>
+  <div class="seg" role="group" aria-label="Layout"><button data-layout="tiers" aria-pressed="true">Tiers</button><button data-layout="chamber" aria-pressed="false">Chamber</button></div>
+  <button class="switch" id="acting" role="switch" aria-checked="true"><i></i>Acting and provisional</button>
+  <a class="chip" id="posterbtn" href="#poster/legco/1970-01-01">Poster</a>
+  <button class="chip phone-only" id="filtbtn" aria-expanded="false" aria-controls="filters">Filters</button>
+</div>
+<div class="filters" id="filters">
+  <span class="flabel">Colour by</span>
+  <select class="sel on" id="colorby" aria-label="Colour cards by"><option value="seat">Seat type</option><option value="bg">Background</option><option value="eth">Ethnicity</option></select>
+  <span class="flabel">Highlight</span>
+  <select class="sel" id="hl-bg" aria-label="Highlight a background"><option value="">Background</option></select>
+  <select class="sel" id="hl-edu" aria-label="Highlight an education"><option value="">Education</option></select>
+  <button class="chip" id="hl-both" aria-pressed="false">Sat on both councils</button>
+  <span class="flabel">Companies</span>
+  <span id="cochips" style="display:contents"></span>
+  <select class="sel" id="hl-more" aria-label="Highlight another organization"><option value="">More</option></select>
+  <button class="clear" id="clear" hidden>Clear</button>
+</div>
+<div class="layout">
+  <section id="board" aria-live="polite" aria-label="Seats"></section>
+  <aside class="side" id="side" aria-label="Summary"></aside>
+</div>
+<div class="tl" id="tl"></div>
+</div>
+
+<section class="page wide" id="timelineview" hidden></section>
+<section class="page wide" id="peopleview" hidden></section>
+<section class="page wide" id="personview" hidden></section>
+<section class="page wide" id="connectionsview" hidden></section>
+<section class="page wide" id="howview" hidden></section>
+<section class="page wide" id="limitsview" hidden></section>
+<section class="page wide" id="aboutview" hidden></section>
+<section class="page wide" id="dataview" hidden></section>
+<section class="page wide" id="posterview" hidden></section>
+</main>
+
+<footer>
+  <span>In Council · a project by <a href="https://viet-huynh.com">Viet Huynh</a> · data as of <span id="built"></span></span>
+  <span><a href="people/">All people A–Z</a> · <a href="#limits">What's missing</a> · <a href="#data">Data (CC BY 4.0)</a> · <a href="#how">How it works</a> · Corrections: <a href="mailto:hello@viet-huynh.com">hello@viet-huynh.com</a></span>
+</footer>
+
+<div id="tip" role="tooltip"></div>
+<div id="drawer" aria-hidden="true"><div class="scrim" data-close></div><div class="panel" role="dialog" aria-modal="true" aria-labelledby="pname" tabindex="-1"><button class="close" data-close>Close ✕</button><div id="pbody"></div></div></div>
+
+<script>
+__JS__
+</script>
+</body>
+</html>
